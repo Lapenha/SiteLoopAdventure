@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loop Adventure Turismo</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Loop <span>Adventure</span> Turismo</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#frota">Nossa Frota</a></li>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="inicio" class="hero">
+    <div class="container">
+      <h2 class="fade-in">Aventuras Inesquecíveis</h2>
+      <p class="fade-in delay-1">Conheça nossa frota premium para suas viagens</p>
+      <a href="#frota" class="btn fade-in delay-2">Ver Veículos</a>
+    </div>
+    <style>
+      .hero {
+        background: url('fotoonibus.jpg') no-repeat center center/cover !important;
+      }
+    </style>
+  </section>
+
+  <section id="frota" class="frota">
+    <div class="container">
+      <h2>Nossa Frota</h2>
+      <p>Veículos confortáveis e seguros para sua viagem</p>
+      <div class="cards">
+        <div class="card fade-in">
+          <img src="img/van-executiva.png" alt="Van Executiva" />
+          <h3>Van Executiva</h3>
+          <p>Capacidade para 15 passageiros, ar-condicionado, poltronas reclináveis e som.</p>
+          <button class="btn detalhes" data-veiculo="van">Ver Detalhes</button>
+        </div>
+        <div class="card fade-in delay-1">
+          <img src="img/microonibus-luxo.png" alt="Micro-ônibus Luxo" />
+          <h3>Micro-ônibus Luxo</h3>
+          <p>28 passageiros, ar-condicionado, TV, Wi-Fi e bagageiro amplo.</p>
+          <button class="btn detalhes" data-veiculo="micro">Ver Detalhes</button>
+        </div>
+        <div class="card fade-in delay-2">
+          <img src="fotoonibus.jpg" alt="SUV Premium" />
+          <h3>SUV Premium</h3>
+          <p>7 passageiros, ar-condicionado e porta-malas espaçoso.</p>
+          <button class="btn detalhes" data-veiculo="suv">Ver Detalhes</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="sobre">
+    <div class="container">
+      <h2>Sobre a Loop Adventure</h2>
+      <p>Mais de 10 anos no mercado com experiências únicas, seguras e uma frota moderna.</p>
+      <ul class="destaques">
+        <li><strong>10+</strong> Anos de experiência</li>
+        <li><strong>5000+</strong> Clientes satisfeitos</li>
+        <li><strong>100%</strong> Segurança</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contato" class="contato">
+    <div class="container">
+      <h2>Entre em Contato</h2>
+      <div class="info-contato">
+        <p><strong>Endereço:</strong>  Av. José da Rocha Viana, 257 - Vila Pedra Branca, São Paulo</p>
+        <p><strong>Telefone:</strong> (11) 2952-2129</p>
+        <p><strong>Email:</strong> loopadventure@hotmail.com</p>
+        <p><strong>Horário:</strong> Seg a Sex: 8h às 18h</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h2><span class="azul">Loop Adventure</span> <span class="turismo">Turismo</span></h2>
+        <p>Aventuras inesquecíveis com segurança e conforto</p>
+      </div>
+      <div class="footer-col">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#frota">Nossa Frota</a></li>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Serviços</h3>
+        <ul>
+          <li><a href="#">Viagens Corporativas</a></li>
+          <li><a href="#">Excursões</a></li>
+          <li><a href="#">Transfers</a></li>
+          <li><a href="#">Eventos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Loop Adventure Turismo. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Detalhes do Veículo</h2>
+      <div class="modal-body">
+        <img id="modal-img" src="" alt="Imagem do veículo">
+        <div>
+          <h3 id="modal-titulo"></h3>
+          <p id="modal-desc"></p>
+          <p><strong>Capacidade:</strong> <span id="modal-capacidade"></span></p>
+          <p><strong>Ano:</strong> <span id="modal-ano"></span></p>
+          <p><strong>Comodidades:</strong> <span id="modal-comodidades"></span></p>
+          <p><strong>Disponibilidade:</strong> Disponível</p>
+          <button class="btn">Solicitar Orçamento</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
