@@ -1,24 +1,20 @@
-# 🚌 Loop Adventure Turismo
+# Loop Adventure Turismo
 
-Site institucional responsivo desenvolvido para a empresa fictícia **Loop Adventure Transportes e Turismo**, com foco em apresentar os serviços, galeria de veículos e informações de contato.
+Site institucional responsivo para a Loop Adventure Turismo, com foco em apresentar servi&ccedil;os de transporte, turismo, eventos, transfers e opera&ccedil;&otilde;es personalizadas.
 
-## 🌐 Visite o site
+## Visite o site
 
-[🔗 Acesse o site aqui](https://lapenha.github.io/SiteLoopAdventure)
+[Acesse o site aqui](https://lapenha.github.io/SiteLoopAdventure)
 
-## 🧰 Tecnologias utilizadas
+## Tecnologias utilizadas
 
-- **HTML5**
-- **Tailwind CSS**
-- **JavaScript** (para modais interativos e animações)
+- HTML5 sem depend&ecirc;ncias de build
+- CSS moderno com glassmorphism, grid responsivo, anima&ccedil;&otilde;es e estados interativos
+- JavaScript para menu mobile, reveal on scroll, parallax suave, progresso de leitura e contadores animados
 
-## 📱 Responsividade
+## Funcionalidades
 
-O site é 100% responsivo, adaptando-se automaticamente a celulares, tablets e desktops, utilizando os utilitários do Tailwind CSS.
-
-## ⚙️ Funcionalidades
-
-- Galeria de veículos com botão “Ver detalhes” que exibe informações em um modal.
-- Animações suaves nas interações.
-- Rodapé estilizado com links de navegação e redes sociais.
-- Layout limpo e moderno usando Tailwind CSS.
+- P&aacute;gina institucional com hero, servi&ccedil;os, estrutura, experi&ecirc;ncias, processo e contato
+- Remo&ccedil;&atilde;o dos modais de ve&iacute;culos
+- Layout responsivo para celulares, tablets e desktops
+- Chamadas diretas para telefone, e-mail, WhatsApp e mapa

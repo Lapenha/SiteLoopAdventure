@@ -1,73 +1,93 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const animatedElements = document.querySelectorAll('.fade-in');
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector("[data-nav]");
+  const menu = document.querySelector("[data-menu]");
+  const menuToggle = document.querySelector("[data-menu-toggle]");
+  const progress = document.querySelector(".page-progress");
+  const hero = document.querySelector(".hero");
+  const revealItems = document.querySelectorAll(".reveal");
+  const counters = document.querySelectorAll("[data-counter]");
+  const serviceCards = document.querySelectorAll(".service-card");
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  const setScrollState = () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
 
-  animatedElements.forEach(el => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
-  });
+    nav.classList.toggle("is-scrolled", window.scrollY > 24);
+    progress.style.transform = `scaleX(${ratio})`;
 
-  // Modal
-  const modal = document.getElementById('modal');
-  const closeModal = document.querySelector('.close');
-  const buttons = document.querySelectorAll('.detalhes');
-
-  const veiculos = {
-    van: {
-      titulo: "Van Executiva",
-      desc: "Veículo espaçoso para viagens executivas e traslados.",
-      capacidade: "15 passageiros",
-      ano: "2020",
-      comodidades: "Ar-condicionado, Poltronas reclináveis, Som",
-      imagem: "img/van-executiva.png"
-    },
-    micro: {
-      titulo: "Micro-ônibus Luxo",
-      desc: "Conforto para até 28 passageiros, com ar-condicionado, TV, Wi-Fi e bagageiro amplo para suas viagens.",
-      capacidade: "28 passageiros",
-      ano: "2021",
-      comodidades: "Ar-condicionado, Wi-Fi, TV, Bagageiro amplo, Frigobar",
-      imagem: "img/microonibus-luxo.png"
-    },
-    suv: {
-      titulo: "SUV Premium",
-      desc: "Veículo 4x4 ideal para aventuras.",
-      capacidade: "7 passageiros",
-      ano: "2022",
-      comodidades: "Ar-condicionado, Porta-malas amplo, Multimídia",
-      imagem: "img/suv-premium.png"
+    if (hero) {
+      hero.style.setProperty("--parallax", `${Math.min(window.scrollY * 0.18, 90)}px`);
     }
   };
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const key = btn.dataset.veiculo;
-      const data = veiculos[key];
+  const closeMenu = () => {
+    document.body.classList.remove("menu-open");
+    menu.classList.remove("is-open");
+    menuToggle.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  };
 
-      document.getElementById('modal-img').src = data.imagem;
-      document.getElementById('modal-titulo').textContent = data.titulo;
-      document.getElementById('modal-desc').textContent = data.desc;
-      document.getElementById('modal-capacidade').textContent = data.capacidade;
-      document.getElementById('modal-ano').textContent = data.ano;
-      document.getElementById('modal-comodidades').textContent = data.comodidades;
+  menuToggle.addEventListener("click", () => {
+    const isOpen = menu.classList.toggle("is-open");
+    document.body.classList.toggle("menu-open", isOpen);
+    menuToggle.classList.toggle("is-open", isOpen);
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
-      modal.classList.remove('hidden');
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  const counterObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const element = entry.target;
+      const target = Number(element.dataset.counter);
+      const duration = 1500;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progressValue = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progressValue, 3);
+        element.textContent = Math.floor(target * eased).toLocaleString("pt-BR");
+
+        if (progressValue < 1) {
+          requestAnimationFrame(tick);
+        }
+      };
+
+      requestAnimationFrame(tick);
+      observer.unobserve(element);
+    });
+  }, { threshold: 0.55 });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.16, rootMargin: "0px 0px -80px 0px" });
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+  counters.forEach((counter) => counterObserver.observe(counter));
+
+  serviceCards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 7;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * -7;
+      card.style.setProperty("--tilt-x", `${x}deg`);
+      card.style.setProperty("--tilt-y", `${y}deg`);
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
     });
   });
 
-  closeModal.addEventListener('click', () => {
-    modal.classList.add('hidden');
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.add('hidden');
-  });
+  window.addEventListener("scroll", setScrollState, { passive: true });
+  setScrollState();
 });
