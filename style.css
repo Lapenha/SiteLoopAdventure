@@ -9,7 +9,7 @@
   --red: #d94032;
   --red-dark: #a92922;
   --gold: #f5bd32;
-  --gold-soft: #fff1bf;
+  --gold-soft: #ffffff;
   --shadow: 0 24px 80px rgba(7, 63, 117, 0.18);
   --radius: 8px;
 }
@@ -61,7 +61,7 @@ a {
 .navbar {
   align-items: center;
   backdrop-filter: blur(18px);
-  background: rgba(255, 251, 235, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(245, 189, 50, 0.45);
   border-radius: 999px;
   box-shadow: 0 18px 60px rgba(16, 24, 40, 0.1);
@@ -80,7 +80,7 @@ a {
 }
 
 .navbar.is-scrolled {
-  background: rgba(255, 251, 235, 0.96);
+  background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 12px 34px rgba(7, 63, 117, 0.16);
   transform: translateX(-50%) translateY(-5px);
 }
@@ -161,8 +161,8 @@ a {
 }
 
 .hero-media {
-  background-image: url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1800&q=80");
-  background-position: center calc(50% + var(--parallax, 0px));
+  background-image: url("fotosFrota/WhatsApp Image 2026-05-13 at 15.00.16.jpeg");
+  background-position: center calc(54% + var(--parallax, 0px));
   background-size: cover;
   transform: scale(1.05);
 }
@@ -430,19 +430,20 @@ h3 {
 .timeline p,
 .fleet-card p,
 .cert-card p,
+.cert-logo-card p,
 .contact-content p,
 .footer p {
   color: var(--muted);
 }
 
 .fleet-section {
-  background: linear-gradient(180deg, #fff, var(--paper));
+  background: #fff;
 }
 
 .fleet-layout {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 44px;
 }
 
@@ -460,12 +461,131 @@ h3 {
   transform: translateY(-8px);
 }
 
-.fleet-card video {
-  aspect-ratio: 4 / 5;
+.fleet-card video,
+.fleet-gallery,
+.fleet-placeholder {
+  aspect-ratio: 16 / 9;
   background: var(--blue-deep);
-  height: 360px;
+  height: 330px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.fleet-card video {
   object-fit: cover;
   width: 100%;
+}
+
+.fleet-gallery img {
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--gallery-position, center center);
+  transition: opacity 0.2s ease;
+  width: 100%;
+}
+
+.gallery-arrow {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(13, 94, 164, 0.14);
+  border-radius: 50%;
+  box-shadow: 0 10px 24px rgba(3, 27, 51, 0.18);
+  color: var(--blue-dark);
+  cursor: pointer;
+  display: grid;
+  font-size: 1.7rem;
+  font-weight: 900;
+  height: 42px;
+  line-height: 1;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: 42px;
+  z-index: 2;
+}
+
+.gallery-arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.04);
+}
+
+.gallery-arrow.prev {
+  left: 12px;
+}
+
+.gallery-arrow.next {
+  right: 12px;
+}
+
+.gallery-count {
+  background: rgba(3, 27, 51, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  bottom: 12px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 6px 10px;
+  position: absolute;
+  right: 12px;
+  z-index: 2;
+}
+
+.fleet-placeholder {
+  align-items: center;
+  background:
+    linear-gradient(135deg, rgba(3, 27, 51, 0.94), rgba(13, 94, 164, 0.78)),
+    radial-gradient(circle at 80% 20%, rgba(245, 189, 50, 0.35), transparent 32%);
+  display: grid;
+  justify-items: center;
+}
+
+.fleet-placeholder::before {
+  border: 2px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px 999px 18px 18px;
+  content: "";
+  height: 82px;
+  position: absolute;
+  top: 108px;
+  width: 250px;
+}
+
+.fleet-placeholder::after {
+  background: linear-gradient(90deg, var(--gold), var(--red));
+  border-radius: 999px;
+  bottom: 94px;
+  content: "";
+  height: 7px;
+  position: absolute;
+  width: 330px;
+}
+
+.fleet-placeholder span {
+  color: rgba(255, 255, 255, 0.14);
+  font-size: 4.6rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.van-placeholder::before {
+  height: 66px;
+  top: 116px;
+  width: 230px;
+}
+
+.micro-placeholder::before {
+  height: 82px;
+  top: 108px;
+  width: 260px;
+}
+
+.micro-placeholder span {
+  font-size: 3.8rem;
 }
 
 .fleet-card div {
@@ -496,7 +616,7 @@ h3 {
 }
 
 .fleet-card li {
-  background: var(--gold-soft);
+  background: #fff;
   border: 1px solid rgba(245, 189, 50, 0.5);
   border-radius: 999px;
   color: var(--blue-dark);
@@ -573,7 +693,7 @@ h3 {
 
 .certifications-section {
   background:
-    linear-gradient(135deg, rgba(255, 241, 191, 0.8), rgba(247, 251, 255, 0.96)),
+    linear-gradient(135deg, #fff, rgba(247, 251, 255, 0.96)),
     linear-gradient(90deg, rgba(13, 94, 164, 0.08), rgba(217, 64, 50, 0.06));
 }
 
@@ -582,6 +702,10 @@ h3 {
   gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 44px;
+}
+
+.logo-cert-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .cert-card {
@@ -607,6 +731,34 @@ h3 {
 
 .cert-card h3 {
   margin-bottom: 10px;
+}
+
+.cert-logo-card {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(13, 94, 164, 0.14);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 44px rgba(7, 63, 117, 0.08);
+  display: grid;
+  gap: 16px;
+  grid-template-rows: 96px auto 1fr;
+  min-height: 300px;
+  padding: 18px;
+}
+
+.cert-logo-card img {
+  align-self: center;
+  background: #fff;
+  border: 1px solid rgba(13, 94, 164, 0.1);
+  border-radius: var(--radius);
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+  width: 100%;
+}
+
+.cert-logo-card h3 {
+  color: var(--blue-dark);
+  font-size: 1.18rem;
 }
 
 .dark-section {
@@ -722,6 +874,57 @@ h3 {
   padding: 28px;
 }
 
+.whatsapp-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.whatsapp-list a {
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: var(--radius);
+  color: var(--ink);
+  display: inline-flex;
+  gap: 12px;
+  min-height: 56px;
+  padding: 10px 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-list a:hover {
+  box-shadow: 0 14px 32px rgba(3, 27, 51, 0.2);
+  transform: translateY(-2px);
+}
+
+.whatsapp-list img {
+  border-radius: 50%;
+  flex: 0 0 34px;
+  height: 34px;
+  object-fit: cover;
+  width: 34px;
+}
+
+.whatsapp-list span,
+.whatsapp-list strong {
+  display: block;
+}
+
+.whatsapp-list span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.whatsapp-list strong {
+  color: var(--blue-dark);
+  line-height: 1.1;
+}
+
 .contact-card strong {
   display: block;
   font-size: 1.45rem;
@@ -742,7 +945,7 @@ h3 {
 
 .footer {
   align-items: center;
-  background: var(--gold-soft);
+  background: #fff;
   border-top: 1px solid var(--line);
   display: grid;
   gap: 14px;
@@ -884,6 +1087,7 @@ h3 {
   .service-grid,
   .experience-grid,
   .fleet-layout,
+  .logo-cert-grid,
   .cert-grid,
   .timeline {
     grid-template-columns: 1fr;
@@ -951,12 +1155,14 @@ h3 {
   }
 
   .hero-actions,
-  .contact-actions {
+  .contact-actions,
+  .whatsapp-list {
     align-items: stretch;
     flex-direction: column;
   }
 
-  .btn {
+  .btn,
+  .whatsapp-list a {
     width: 100%;
   }
 
@@ -968,12 +1174,15 @@ h3 {
   .service-card,
   .fleet-card div,
   .cert-card,
+  .cert-logo-card,
   .timeline li,
   .contact-card {
     padding: 22px;
   }
 
-  .fleet-card video {
+  .fleet-card video,
+  .fleet-gallery,
+  .fleet-placeholder {
     height: 300px;
   }
 

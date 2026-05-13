@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const revealItems = document.querySelectorAll(".reveal");
   const counters = document.querySelectorAll("[data-counter]");
   const serviceCards = document.querySelectorAll(".service-card");
+  const galleries = document.querySelectorAll("[data-gallery]");
 
   const setScrollState = () => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -85,6 +86,38 @@ document.addEventListener("DOMContentLoaded", () => {
     card.addEventListener("pointerleave", () => {
       card.style.setProperty("--tilt-x", "0deg");
       card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
+
+  galleries.forEach((gallery) => {
+    const image = gallery.querySelector("[data-gallery-image]");
+    const count = gallery.querySelector("[data-gallery-count]");
+    const sources = Array.from(gallery.querySelectorAll("[data-src]")).map((item) => ({
+      src: item.dataset.src,
+      alt: item.dataset.alt || image.alt,
+      position: item.dataset.position || "center center"
+    }));
+    let index = 0;
+
+    const render = () => {
+      image.style.opacity = "0";
+      window.setTimeout(() => {
+        image.src = sources[index].src;
+        image.alt = sources[index].alt;
+        image.style.setProperty("--gallery-position", sources[index].position);
+        count.textContent = `${index + 1}/${sources.length}`;
+        image.style.opacity = "1";
+      }, 120);
+    };
+
+    gallery.querySelector(".prev").addEventListener("click", () => {
+      index = (index - 1 + sources.length) % sources.length;
+      render();
+    });
+
+    gallery.querySelector(".next").addEventListener("click", () => {
+      index = (index + 1) % sources.length;
+      render();
     });
   });
 
