@@ -28,6 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.setAttribute("aria-expanded", "false");
   };
 
+  const closeMenuOnViewportChange = () => {
+    if (menu.classList.contains("is-open")) {
+      closeMenu();
+    }
+  };
+
   menuToggle.addEventListener("click", () => {
     const isOpen = menu.classList.toggle("is-open");
     document.body.classList.toggle("menu-open", isOpen);
@@ -121,6 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  window.addEventListener("scroll", setScrollState, { passive: true });
+  window.addEventListener("scroll", () => {
+    setScrollState();
+    closeMenuOnViewportChange();
+  }, { passive: true });
+  window.addEventListener("resize", closeMenuOnViewportChange);
   setScrollState();
 });

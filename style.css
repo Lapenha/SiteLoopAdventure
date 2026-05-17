@@ -1013,6 +1013,10 @@ h3 {
     width: calc(100vw - 24px);
   }
 
+  .navbar.is-scrolled {
+    transform: none;
+  }
+
   .menu-toggle {
     align-items: center;
     background: var(--blue);
@@ -1057,6 +1061,7 @@ h3 {
     transform-origin: top right;
     transition: opacity 0.22s ease, transform 0.22s ease;
     width: min(280px, calc(100vw - 24px));
+    z-index: 5;
   }
 
   .nav-menu.is-open {
@@ -1119,6 +1124,10 @@ h3 {
     top: 12px;
     transform: none;
     width: calc(100vw - 24px);
+  }
+
+  .navbar.is-scrolled {
+    transform: none;
   }
 
   .brand img {
